@@ -1,0 +1,14 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "author": "Yann Le Coz",
+  "license": "MIT",
+  "dependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
