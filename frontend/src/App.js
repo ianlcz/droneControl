@@ -1,5 +1,6 @@
 import React from "react";
 import { createGlobalStyle } from "styled-components";
+import Panel from "./components/Panel";
 
 const AppStyled = createGlobalStyle`
   html {
@@ -17,8 +18,7 @@ const AppStyled = createGlobalStyle`
 const App = () => (
   <React.Fragment>
     <AppStyled />
-    <h1>Ydays - droneControl</h1>
-    <h2>You are in droneControl app !</h2>
+    <Panel />
   </React.Fragment>
 );
 
