@@ -1,6 +1,6 @@
 import React from "react";
 import { createGlobalStyle } from "styled-components";
-import Panel from "./components/Panel";
+import Panel from "./components/Panel/Panel";
 
 const AppStyled = createGlobalStyle`
   html {
