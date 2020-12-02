@@ -5,6 +5,7 @@ const ElevationSpeedStyled = styled.li`
   display: flex;
   flex-direction: column;
   span {
+    width: 3.3em;
     font-size: 48px;
     font-weight: 700;
     text-align: center;
@@ -22,15 +23,13 @@ const ElevationSpeedStyled = styled.li`
   }
 `;
 
-const ElevationSpeed = () => {
-  return (
-    <ElevationSpeedStyled>
-      <span title="Altitude">0 m</span>
-      <ul>
-        <li title="Vitesse">0 km/h</li>
-      </ul>
-    </ElevationSpeedStyled>
-  );
-};
+const ElevationSpeed = () => (
+  <ElevationSpeedStyled>
+    <span title="Altitude">0 m</span>
+    <ul>
+      <li title="Vitesse">0 km/h</li>
+    </ul>
+  </ElevationSpeedStyled>
+);
 
 export default ElevationSpeed;
