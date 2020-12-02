@@ -6,12 +6,10 @@ const SignalIcon = styled(RiSignalWifiOffFill)`
   font-size: 2em;
 `;
 
-const Signal = () => {
-  return (
-    <li title="Signal Wi-Fi : 0dB">
-      <SignalIcon />
-    </li>
-  );
-};
+const Signal = () => (
+  <li title="Signal Wi-Fi : 0dB">
+    <SignalIcon />
+  </li>
+);
 
 export default Signal;

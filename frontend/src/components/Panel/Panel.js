@@ -10,7 +10,7 @@ const PanelStyled = styled.ul`
   display: flex;
   margin: 0 auto;
   padding: 0;
-  width: 75%;
+  width: 70%;
   height: 6em;
   background-color: white;
   color: #0b3268;

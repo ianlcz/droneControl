@@ -5,9 +5,10 @@ This project consists in the development of a React web application which allows
 ## Development Team
 
 - **Bordeaux Ynov Campus IT department :**
-    - [Marie DUGOUA](https://github.com/Shamshamallow) - Bachelor 2
-    - [Nicolas DAYOT](https://github.com/dayotNicolas) - Bachelor 2
-    - [Yann LE COZ](https://github.com/ianlcz) - Bachelor 3 speciality Web & Mobile Technologies
+  - [Marie DUGOUA](https://github.com/Shamshamallow) - Bachelor 2
+  - [Maxime BLAY](https://github.com/Khatium) - Bachelor 3 speciality Web & Mobile Technologies
+  - [Nicolas DAYOT](https://github.com/dayotNicolas) - Bachelor 2
+  - [Yann LE COZ](https://github.com/ianlcz) - Bachelor 3 speciality Web & Mobile Technologies
 
 ## Summary
 
