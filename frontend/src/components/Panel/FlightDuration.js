@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const FlightDurationStyled = styled.li`
   width: 6.6em;
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 300;
   text-align: center;
 `;

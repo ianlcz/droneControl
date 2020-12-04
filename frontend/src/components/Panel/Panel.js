@@ -18,7 +18,7 @@ const PanelStyled = styled.ul`
   border-radius: 10em;
   list-style: none;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
   font-family: "Manrope";
 `;
 
