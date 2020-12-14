@@ -1,17 +1,12 @@
-import React from "react";
-import {
-  IoBatteryCharging,
-  IoBatteryDead,
-  IoBatteryFull,
-  IoBatteryHalf,
-} from "react-icons/io5";
+import React, { useState } from "react";
+import { BsBattery, BsBatteryFull, BsBatteryHalf } from "react-icons/bs";
 import styled from "styled-components";
 
 const BatteryStyled = styled.li`
   width: 3.3em;
   color: ${(props) =>
     props.level <= 20 && props.level >= 10
-      ? "#0b6832"
+      ? "#685e0b"
       : props.level < 10
       ? "#680b32"
       : "#0b3268"};
@@ -20,7 +15,7 @@ const BatteryStyled = styled.li`
     font-size: 2em;
   }
   ul {
-    margin-top: -0.6em;
+    margin-top: -0.4em;
     padding: 0;
     list-style: none;
   }
@@ -31,30 +26,22 @@ const BatteryStyled = styled.li`
   }
 `;
 
-const Battery = (props) => (
-  <BatteryStyled
-    title={
-      props.level !== undefined ? "Niveau de la batterie" : "Drone en charge..."
-    }
-    level={props.level}
-  >
-    {props.level <= 50 && props.level > 5 ? (
-      <IoBatteryHalf />
-    ) : props.level <= 5 ? (
-      <IoBatteryDead />
-    ) : props.level === undefined ? (
-      <IoBatteryCharging />
-    ) : (
-      <IoBatteryFull />
-    )}
-    {typeof props.level === "number" ? (
+const Battery = () => {
+  const levelBattery = 100;
+  return (
+    <BatteryStyled title="Niveau de la batterie" level={levelBattery}>
+      {levelBattery <= 50 && levelBattery > 5 ? (
+        <BsBatteryHalf />
+      ) : levelBattery <= 5 ? (
+        <BsBattery />
+      ) : (
+        <BsBatteryFull />
+      )}
       <ul>
-        <li>{`${props.level} %`}</li>
+        <li>{levelBattery} %</li>
       </ul>
-    ) : null}
-  </BatteryStyled>
-);
-
-Battery.defaultProps = { level: 100 };
+    </BatteryStyled>
+  );
+};
 
 export default Battery;
