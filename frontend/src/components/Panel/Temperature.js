@@ -8,8 +8,10 @@ const TemperatureStyled = styled.li`
   text-align: center;
 `;
 
-const Temperature = () => (
-  <TemperatureStyled title="Température">0°C</TemperatureStyled>
+const Temperature = (props) => (
+  <TemperatureStyled title="Température">{`${props.value}°C`}</TemperatureStyled>
 );
+
+Temperature.defaultProps = { value: 0 };
 
 export default Temperature;

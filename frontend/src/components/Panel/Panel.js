@@ -14,7 +14,7 @@ const PanelStyled = styled.ul`
   height: 6em;
   background-color: white;
   color: #0b3268;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
   border-radius: 10em;
   list-style: none;
   align-items: center;
