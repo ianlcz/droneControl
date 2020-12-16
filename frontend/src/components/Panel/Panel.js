@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Battery from "./Battery";
 import ElevationSpeed from "./ElevationSpeed";
 import Signal from "./Signal";
 import Temperature from "./Temperature";
 import FlightDuration from "./FlightDuration";
+import socket from "../../socket";
 
 const PanelStyled = styled.ul`
   display: flex;
