@@ -11,7 +11,7 @@ const AppStyled = createGlobalStyle`
     margin: 0;
     padding: 0;
     min-height: 100%;
-    background: linear-gradient(0deg, #0b3268 0%,  #114da1 100%) no-repeat fixed;
+    background: linear-gradient(0deg, #0b3268 0%, #114da1 100%) no-repeat fixed;
   }
 `;
 

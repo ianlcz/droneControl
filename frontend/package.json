@@ -1,10 +1,11 @@
 {
-  "name": "reactapp",
+  "name": "dronecontrol",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "parcel public/index.html -p 2020"
+    "dev": "parcel public/index.html -p 2020",
+    "build": "parcel build public/index.html"
   },
   "babel": {
     "presets": [
