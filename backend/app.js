@@ -30,23 +30,24 @@ const parseState = (state) =>
     }, {});
 
 drone.on("message", (message) => {
-  console.log(`log : ${message}`);
+  console.log(`log : ${message}`);
   io.sockets.emit("status", message.toString());
 });
 
-const handleError = (err) => {
-  if (err) {
-    console.error(err);
-  }
+handleError = (err) => {
+  if (err) console.error(err);
 };
+
+drone.send("command", 0, "command".length, PORT_SEND, HOST, handleError);
 
 io.on("connection", (socket) => {
   socket.on("command", (command) => {
-    console.log(`Commande envoyée depuis le navigateur : ${command}`);
+    console.log("`Commande envoyée depuis le navigateur");
+    console.log(command);
     drone.send(command, 0, command.length, PORT_SEND, HOST, handleError);
   });
 
-  socket.emit("status", true);
+  socket.emit("status", "CONNECTED");
 });
 
 droneState.on(
