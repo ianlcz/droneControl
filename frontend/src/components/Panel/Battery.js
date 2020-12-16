@@ -12,7 +12,7 @@ const BatteryStyled = styled.li`
   color: ${(props) =>
     props.level <= 20 && props.level >= 10
       ? "#0b6832"
-      : props.level < 10
+      : props.level < 10 && props.level !== null
       ? "#680b32"
       : "#0b3268"};
   svg {
@@ -33,19 +33,25 @@ const BatteryStyled = styled.li`
 
 const Battery = (props) => (
   <BatteryStyled
-    title={props.level !== undefined ? "Niveau de la batterie" : "En charge..."}
+    title={
+      props.level === undefined || isNaN(props.level) || props.level === null
+        ? "En charge..."
+        : "Niveau de la batterie"
+    }
     level={props.level}
   >
     {props.level <= 50 && props.level > 5 ? (
       <IoBatteryHalf />
-    ) : props.level <= 5 ? (
+    ) : props.level <= 5 && props.level !== null ? (
       <IoBatteryDead />
-    ) : props.level === undefined ? (
+    ) : props.level === undefined ||
+      isNaN(props.level) ||
+      props.level === null ? (
       <IoBatteryCharging />
     ) : (
       <IoBatteryFull />
     )}
-    {typeof props.level === "number" ? (
+    {!isNaN(props.level) && props.level !== null ? (
       <ul>
         <li>{`${props.level} %`}</li>
       </ul>
@@ -53,6 +59,6 @@ const Battery = (props) => (
   </BatteryStyled>
 );
 
-Battery.defaultProps = { level: 100 };
+Battery.defaultProps = { level: null };
 
 export default Battery;
