@@ -1,6 +1,9 @@
 import React from "react";
-import { createGlobalStyle } from "styled-components";
+import {
+  createGlobalStyle
+} from "styled-components";
 import Panel from "./components/Panel/Panel";
+import Direction from "./components/button/direction";
 
 const AppStyled = createGlobalStyle`
   html {
@@ -16,8 +19,9 @@ const AppStyled = createGlobalStyle`
 `;
 
 const App = () => (
-  <React.Fragment>
+  <React.Fragment >
     <AppStyled />
+    <Direction />
     <Panel />
   </React.Fragment>
 );
