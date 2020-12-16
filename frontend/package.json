@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "parcel public/index.html -p 2020"
+    "dev": "parcel public/index.html -p 2020",
+    "build": "parcel build public/indec.html"
   },
   "babel": {
     "presets": [

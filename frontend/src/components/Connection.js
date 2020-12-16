@@ -12,7 +12,7 @@ const ConnectionStyled = styled.div`
     border-radius: 2em;
     ${(props) =>
       props.isConnected
-        ? "box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);background: white;"
+        ? "box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.4);background: white;"
         : null}
     font-family: Roboto;
     font-size: 12px;
@@ -22,13 +22,14 @@ const ConnectionStyled = styled.div`
   }
 `;
 
-const Connection = () => {
-  let isConnected = true;
+const Connection = (props) => {
   return (
-    <ConnectionStyled isConnected={isConnected}>
-      <p>{isConnected ? "Drone connecté" : "Drone non connecté"}</p>
+    <ConnectionStyled isConnected={props.isConnected}>
+      <p>{props.isConnected ? "Drone connecté" : "Drone non connecté"}</p>
     </ConnectionStyled>
   );
 };
+
+Connection.defaultProps = { isConnected: false };
 
 export default Connection;
