@@ -1,6 +1,7 @@
 import React from "react";
 import { createGlobalStyle } from "styled-components";
 import Connection from "./components/Connection";
+import Panel from "./components/Panel/Panel";
 
 const AppStyled = createGlobalStyle`
   html {
@@ -11,7 +12,7 @@ const AppStyled = createGlobalStyle`
     margin: 0;
     padding: 0;
     min-height: 100%;
-    background: linear-gradient(111.34deg, #0b3268 0%, #114da1 100%) no-repeat fixed;
+    background: linear-gradient(0deg, #0b3268 0%, #114da1 100%) no-repeat fixed;
   }
 `;
 
@@ -19,6 +20,7 @@ const App = () => (
   <React.Fragment>
     <AppStyled />
     <Connection />
+    <Panel />
   </React.Fragment>
 );
 

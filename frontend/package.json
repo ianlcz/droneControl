@@ -1,11 +1,11 @@
 {
-  "name": "reactapp",
+  "name": "dronecontrol",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "parcel public/index.html -p 2020",
-    "build": "parcel build public/indec.html"
+    "build": "parcel build public/index.html"
   },
   "babel": {
     "presets": [
@@ -24,6 +24,8 @@
   "dependencies": {
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
+    "react-icons": "^4.1.0",
+    "socket.io-client": "^3.0.4",
     "styled-components": "^5.2.1"
   }
 }
