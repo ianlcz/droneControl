@@ -12,12 +12,17 @@ const CommandGrid = styled.div`
         height: 24em;
     }
     .button{
+        padding:0;
         display: flex;
         flex-direction: row;
         justify-content : space-around;
         width: 50%;
     }
     button{
+        font-style: bold;
+        font-size: 15px;
+        text-align: center;
+        cursor: pointer;
         margin: 5px;
         width: 33%;
         height: 6em;
