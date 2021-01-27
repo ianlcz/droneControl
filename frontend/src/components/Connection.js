@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import socket from "../socket";
 
 const ConnectionStyled = styled.div`
   padding: 0.8em;
@@ -22,14 +23,23 @@ const ConnectionStyled = styled.div`
   }
 `;
 
-const Connection = (props) => {
+const Connection = () => {
+  const useConnection = () => {
+    const [isConnected, setIsConnected] = useState(false);
+    useEffect(() => {
+      socket.on("status", setIsConnected);
+      return () => socket.removeListener("status");
+    }, []);
+    return isConnected;
+  };
+
+  const isConnected = useConnection();
+
   return (
-    <ConnectionStyled isConnected={props.isConnected}>
-      <p>{props.isConnected ? "Drone connecté" : "Drone non connecté"}</p>
+    <ConnectionStyled isConnected={isConnected}>
+      <p>{isConnected ? "Drone connecté" : "Drone non connecté"}</p>
     </ConnectionStyled>
   );
 };
-
-Connection.defaultProps = { isConnected: false };
 
 export default Connection;

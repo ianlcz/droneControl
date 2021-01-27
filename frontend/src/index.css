@@ -7,7 +7,8 @@
   font-family: "Roboto";
   src: url("./fonts/Roboto/Roboto-Medium.ttf") format("truetype");
   font-weight: 500;
-  
+}
+
 @font-face {
   font-family: "Manrope";
   src: url("./fonts/Manrope/Manrope-ExtraLight.ttf") format("truetype");
