@@ -47,13 +47,15 @@ io.on("connection", (socket) => {
   });
 
   let SNR = 0;
-  
+
   setInterval(() => {
     SNR = Number(drone.send("wifi?", 0, 5, PORT.SEND, HOST, handleError));
-  }, 1000);
+  }, 5000);
 
-  if (SNR >= 10) {
+  if (SNR >= 10 && !isNaN(SNR)) {
     socket.emit("status", true);
+  } else {
+    socket.emit("status", false);
   }
 });
 
