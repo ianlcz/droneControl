@@ -25,8 +25,6 @@ const Signal = () => {
 
   const SNR = useSignal([]);
 
-  console.log(SNR);
-
   return (
     <SignalStyled title={`Signal Wi-Fi${SNR ? ` : ${SNR}dB` : ""}`}>
       {SNR >= 41 ? (
