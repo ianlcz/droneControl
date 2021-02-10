@@ -9,7 +9,9 @@ const TemperatureStyled = styled.li`
 `;
 
 const Temperature = (props) => (
-  <TemperatureStyled title="Température">{`${props.value}°C`}</TemperatureStyled>
+  <TemperatureStyled title="Température">{`${
+    isNaN(props.value) ? 0 : parseInt(props.value)
+  }°C`}</TemperatureStyled>
 );
 
 Temperature.defaultProps = { value: 0 };

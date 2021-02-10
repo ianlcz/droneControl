@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Battery from "./Battery";
 import ElevationSpeed from "./ElevationSpeed";
 import Signal from "./Signal";
 import Temperature from "./Temperature";
 import FlightDuration from "./FlightDuration";
+import socket from "../../socket";
 
 const PanelStyled = styled.ul`
   display: flex;
@@ -23,13 +24,28 @@ const PanelStyled = styled.ul`
 `;
 
 const Panel = () => {
+  const useDroneState = () => {
+    const [droneState, updateDroneState] = useState({});
+    useEffect(() => {
+      socket.on("dronestate", updateDroneState);
+      return () => socket.removeListener("dronestate");
+    }, []);
+    return droneState;
+  };
+
+  const droneState = useDroneState([]);
   return (
     <PanelStyled>
       <Signal />
-      <Temperature />
-      <ElevationSpeed />
-      <FlightDuration />
-      <Battery />
+      <Temperature
+        value={(Number(droneState.temph) + Number(droneState.templ)) / 2}
+      />
+      <ElevationSpeed
+        elevation={Number(droneState.h)}
+        speed={Number(droneState.vgz)}
+      />
+      <FlightDuration value={Number(droneState.time)} />
+      <Battery level={Number(droneState.bat)} />
     </PanelStyled>
   );
 };

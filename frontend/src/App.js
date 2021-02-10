@@ -1,4 +1,5 @@
 import React from "react";
+import React from "react";
 import {
   createGlobalStyle
 } from "styled-components";
@@ -19,11 +20,11 @@ const AppStyled = createGlobalStyle`
 `;
 
 const App = () => (
-  <React.Fragment >
-    <AppStyled />
-    <Direction />
-    <Panel />
-  </React.Fragment>
+    <React.Fragment >
+      <AppStyled />
+      <Direction />
+      <Panel />
+    </React.Fragment>
 );
 
 export default App;

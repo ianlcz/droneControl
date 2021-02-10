@@ -23,7 +23,7 @@ const FlightDuration = (props) => {
 
   return (
     <FlightDurationStyled title="Durée de vol">
-      {timeInMinuteSecond(props.value)}
+      {timeInMinuteSecond(isNaN(props.value) ? 0 : props.value)}
     </FlightDurationStyled>
   );
 };
