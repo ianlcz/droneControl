@@ -23,7 +23,7 @@ const ElevationSpeedStyled = styled.li`
   }
 `;
 
-const ElevationSpeed = (props) => {
+const ElevationSpeed = ({ elevation, speed }) => {
   /**
    * Converts drone's altitude
    * @param {number} centimeter Altitude in cm
@@ -31,9 +31,9 @@ const ElevationSpeed = (props) => {
    */
   const altitudeInMeter = (centimeter) =>
     centimeter < 100
-      ? (centimeter / 100).toFixed(1) - parseInt(centimeter / 100) === 0
+      ? centimeter / 100 - parseInt(centimeter / 100) === 0
         ? parseInt(centimeter / 100)
-        : (centimeter / 100).toFixed(1)
+        : Number((centimeter / 100).toFixed(1))
       : centimeter / 100;
 
   /**
@@ -42,19 +42,19 @@ const ElevationSpeed = (props) => {
    * @returns {number} Current speed in km/h
    */
   const speedInKilometerPerHour = (centimerPerSecond) =>
-    (centimerPerSecond * 0.036).toFixed(1) -
-      parseInt(centimerPerSecond * 0.036) ===
-    0
+    centimerPerSecond * 0.036 - parseInt(centimerPerSecond * 0.036) === 0
       ? parseInt(centimerPerSecond * 0.036)
-      : (centimerPerSecond * 0.036).toFixed(1);
+      : Number(centimerPerSecond * 0.036).toFixed(2);
 
   return (
     <ElevationSpeedStyled>
-      <span title="Altitude">{`${altitudeInMeter(props.elevation)} m`}</span>
+      <span title="Altitude">{`${
+        isNaN(elevation) ? 0 : altitudeInMeter(elevation)
+      } m`}</span>
       <ul>
-        <li title="Vitesse">{`${speedInKilometerPerHour(
-          props.speed
-        )} km/h`}</li>
+        <li title="Vitesse">{`${
+          isNaN(speed) ? 0 : speedInKilometerPerHour(speed)
+        } km/h`}</li>
       </ul>
     </ElevationSpeedStyled>
   );

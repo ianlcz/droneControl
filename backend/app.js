@@ -10,8 +10,10 @@ const io = require("socket.io")(http, {
 });
 const throttle = require("lodash/throttle");
 const commandDelays = require("./commandDelays");
-
-const PORT = { SEND: 8889, RECEIVE: 8890 };
+const PORT = {
+  SEND: 8889,
+  RECEIVE: 8890,
+};
 const HOST = "192.168.10.1";
 
 const drone = dgram.createSocket("udp4");
@@ -41,7 +43,7 @@ drone.send("command", 0, "command".length, PORT.SEND, HOST, handleError);
 
 io.on("connection", (socket) => {
   socket.on("command", (command) => {
-    console.log("`Commande envoyée depuis le navigateur");
+    console.log("Commande envoyée depuis le navigateur");
     console.log(command);
     drone.send(command, 0, command.length, PORT.SEND, HOST, handleError);
   });
@@ -66,6 +68,20 @@ droneState.on(
     100
   )
 );
+
+/* drone.on("listening", (socket) => {
+  socket.on("command", (command) => {
+    let data = drone.send(
+      command,
+      0,
+      command.length,
+      PORT.SEND,
+      HOST,
+      handleError
+    );
+    io.sockets.emit('commandvalue', data.toString())
+  });
+}); */
 
 http.listen(8080, () => {
   console.log("Le serveur Socket.IO est opérationnel");
