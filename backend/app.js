@@ -10,15 +10,16 @@ const io = require("socket.io")(http, {
 });
 const throttle = require("lodash/throttle");
 const commandDelays = require("./commandDelays");
-
-const PORT_SEND = 8889;
-const PORT_RECEIVE = 8890;
+const PORT = {
+  SEND: 8889,
+  RECEIVE: 8890,
+};
 const HOST = "192.168.10.1";
 
 const drone = dgram.createSocket("udp4");
-drone.bind(PORT_SEND);
+drone.bind(PORT.SEND);
 const droneState = dgram.createSocket("udp4");
-droneState.bind(PORT_RECEIVE);
+droneState.bind(PORT.RECEIVE);
 
 const parseState = (state) =>
   state
@@ -38,16 +39,26 @@ handleError = (err) => {
   if (err) console.error(err);
 };
 
-drone.send("command", 0, "command".length, PORT_SEND, HOST, handleError);
+drone.send("command", 0, "command".length, PORT.SEND, HOST, handleError);
 
 io.on("connection", (socket) => {
   socket.on("command", (command) => {
-    console.log("`Commande envoyée depuis le navigateur");
+    console.log("Commande envoyée depuis le navigateur");
     console.log(command);
-    drone.send(command, 0, command.length, PORT_SEND, HOST, handleError);
+    drone.send(command, 0, command.length, PORT.SEND, HOST, handleError);
   });
 
-  socket.emit("status", "CONNECTED");
+  let SNR = 0;
+
+  setInterval(() => {
+    SNR = Number(drone.send("wifi?", 0, 5, PORT.SEND, HOST, handleError));
+  }, 5000);
+
+  if (SNR >= 10 && !isNaN(SNR)) {
+    socket.emit("status", true);
+  } else {
+    socket.emit("status", false);
+  }
 });
 
 droneState.on(
@@ -57,6 +68,20 @@ droneState.on(
     100
   )
 );
+
+/* drone.on("listening", (socket) => {
+  socket.on("command", (command) => {
+    let data = drone.send(
+      command,
+      0,
+      command.length,
+      PORT.SEND,
+      HOST,
+      handleError
+    );
+    io.sockets.emit('commandvalue', data.toString())
+  });
+}); */
 
 http.listen(8080, () => {
   console.log("Le serveur Socket.IO est opérationnel");
