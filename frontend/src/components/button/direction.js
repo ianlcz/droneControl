@@ -14,52 +14,78 @@ const CommandGrid = styled.div`
       display:flex;
       flex-direction: column;
       align-items: center;
-      justify-content : space-evenly;
-      width: 24%;
-      height: 24em;
-      border-radius: 200px;
-      background-color: darkred;
+      width: 16%;
+      height: 17em;
+      border-radius: 20em;
     }
-    .circle-container li{
-      list-style: none;
-    }
-    .button{
-      padding:0;
-      display: flex;
-      flex-direction: row;
-      justify-content : space-around;
-      width: 50%;
-    }
+  .button-one{
+    padding:0;
+    display: flex;
+    flex-direction: row;
+    justify-content : center;
+    width: 50%;
+  }
+  .button-two{
+    padding:0;
+    display: flex;
+    justify-content : center;
+    flex-direction: row;
+    justify-content : space-around;
+    width: 120%;
+  }
+  .button-three{
+    padding:0;
+    display: flex;
+    justify-content : center;
+    flex-direction: row;
+    justify-content : space-between;
+    width: 100%;
+    margin: 19px 0;
+  }
     span {
-      font-size: 30px;
-      text-align: center;
+      font-size: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
-    button{
-      cursor: pointer;
-      width: 9%;
-      height: 4em;
-      background-color: white;
-      color: #0b3268;
-      font-family: "Manrope";
+  button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: white;
+    color: #0b3268;
+    font-family: "Manrope";
+    cursor: pointer;
+  }
+    .round button, .pan button{
       border-radius: 5em;
       box-shadow: 0px 0px 20px rgba(0,0,0,0.4);
     }
+  .button{
+    padding:0;
+    display: flex;
+    justify-content : center;
+    flex-direction: row;
+    justify-content : space-around;
+    width: 30%;
+  }
     .emergency {
       background-color: darkred;
       color: white;
     }
-  .up {
-    transform: rotate(180deg);
-  }
-  .pan{
-    margin: 0 auto;
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content : space-evenly;
-    width: 70%;
-    height: 5em;
-  }
+    .up {
+      transform: rotate(180deg);
+    }
+    .pan{
+      margin: 0 auto;
+      display:flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content : space-evenly;
+      width: 70%;
+      height: 5em;
+    }
 `;
 
 function sendCommand(command) {
@@ -76,35 +102,27 @@ const Direction = () => (
 
         </div>
         <div className="container round">
-            <ul className='circle-container'>
-                <li> <button className="rotate" onClick={sendCommand('ccw 90')}><span className="symbol"><GiClockwiseRotation/></span></button></li>
-                <li><button onClick={sendCommand(`forward ${amount}`)}><span className="symbol"><BiUpArrowAlt/></span></button></li>
-                <li><button className="rotate" onClick={sendCommand('cw 15')}><span className="symbol"><GiAnticlockwiseRotation/></span></button></li>
-                <li><button onClick={sendCommand(`left ${amount}`)}><span className="symbol"><BiLeftArrowAlt/></span></button></li>
-                <li><button onClick={sendCommand(`right ${amount}`)}><span className="symbol"><BiRightArrowAlt/></span></button></li>
-                <li> <button className="up" onClick={sendCommand('takeoff')}><span className="symbol"><BiArrowFromTop/></span></button></li>
-                <li><button onClick={sendCommand(`back ${amount}`)}><span className="symbol"><BiDownArrowAlt/></span></button></li>
-                <li><button className="down" onClick={sendCommand('down')}><span className="symbol"><BiArrowToBottom/></span></button></li>
-            </ul>
-            {/* <div className="button" >*/}
-            {/*     Rotate to the left 90° */}
-            {/*    <button className="rotate" onClick={sendCommand('ccw 90')}><span className="symbol"><GiClockwiseRotation/></span></button>*/}
-            {/*    <button onClick={sendCommand(`forward ${amount}`)}><span className="symbol"><BiUpArrowAlt/></span></button>*/}
-            {/*     Rotate to the right 15° */}
-            {/*    <button className="rotate" onClick={sendCommand('cw 15')}><span className="symbol"><GiAnticlockwiseRotation/></span></button>*/}
-            {/*</div>*/}
+            <div className="button-one" >
+                <button onClick={sendCommand(`forward ${amount}`)}><span className="symbol"><BiUpArrowAlt/></span></button>
+            </div>
+             <div className="button-two" >
+                <button className="rotate" onClick={sendCommand('ccw 90')}><span className="symbol"><GiClockwiseRotation/></span></button>
+                <button className="rotate" onClick={sendCommand('cw 15')}><span className="symbol"><GiAnticlockwiseRotation/></span></button>
+            </div>
 
-            {/*<div className="button" >*/}
-            {/*    <button onClick={sendCommand(`left ${amount}`)}><span className="symbol"><BiLeftArrowAlt/></span></button>*/}
-            {/*    <button className="emergency" onClick={sendCommand('emergency')}><span className="symbol"><IoWarningOutline/></span></button>*/}
-            {/*    <button onClick={sendCommand(`right ${amount}`)}><span className="symbol"><BiRightArrowAlt/></span></button>*/}
-            {/*</div>*/}
+            <div className="button-three" >
+                <button onClick={sendCommand(`left ${amount}`)}><span className="symbol"><BiLeftArrowAlt/></span></button>
+                <button className="emergency" onClick={sendCommand('emergency')}><span className="symbol"><IoWarningOutline/></span></button>
+                <button onClick={sendCommand(`right ${amount}`)}><span className="symbol"><BiRightArrowAlt/></span></button>
+            </div>
 
-            {/*<div className="button">*/}
-            {/*    <button className="up" onClick={sendCommand('up')}><span className="symbol"><BiArrowFromTop/></span></button>*/}
-            {/*    <button onClick={sendCommand(`back ${amount}`)}><span className="symbol"><BiDownArrowAlt/></span></button>*/}
-            {/*    <button className="down" onClick={sendCommand('down')}><span className="symbol"><BiArrowToBottom/></span></button>*/}
-            {/*</div>*/}
+            <div className="button-two">
+                <button className="up" onClick={sendCommand('up')}><span className="symbol"><BiArrowFromTop/></span></button>
+                <button className="down" onClick={sendCommand('down')}><span className="symbol"><BiArrowToBottom/></span></button>
+            </div>
+            <div className="button-one">
+                <button onClick={sendCommand(`back ${amount}`)}><span className="symbol"><BiDownArrowAlt/></span></button>
+            </div>
         </div>
         <div className="container pan">
             <div className="button">
