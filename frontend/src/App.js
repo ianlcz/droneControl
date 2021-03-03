@@ -1,7 +1,10 @@
 import React from "react";
-import { createGlobalStyle } from "styled-components";
-import Connection from "./components/Connection";
+
+import {
+  createGlobalStyle
+} from "styled-components";
 import Panel from "./components/Panel/Panel";
+import Direction from "./components/button/direction";
 
 const AppStyled = createGlobalStyle`
   html {
@@ -17,11 +20,11 @@ const AppStyled = createGlobalStyle`
 `;
 
 const App = () => (
-  <React.Fragment>
-    <AppStyled />
-    <Connection />
-    <Panel />
-  </React.Fragment>
+    <React.Fragment >
+      <AppStyled />
+      <Direction />
+      <Panel />
+    </React.Fragment>
 );
 
 export default App;
