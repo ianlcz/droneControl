@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { withGlobalState } from "react-globally";
 import styled from "styled-components";
 import socket from "../socket";
 
@@ -23,23 +24,14 @@ const ConnectionStyled = styled.div`
   }
 `;
 
-const Connection = () => {
-  const useConnection = () => {
-    const [isConnected, setIsConnected] = useState(false);
-    useEffect(() => {
-      socket.on("status", setIsConnected);
-      return () => socket.removeListener("status");
-    }, []);
-    return isConnected;
-  };
-
-  const isConnected = useConnection();
+const Connection = ({ globalState }) => {
+  const { isDroneConnected } = globalState;
 
   return (
-    <ConnectionStyled isConnected={isConnected}>
-      <p>{isConnected ? "Drone connecté" : "Drone non connecté"}</p>
+    <ConnectionStyled isConnected={isDroneConnected}>
+      <p>{isDroneConnected ? "Drone connecté" : "Drone non connecté"}</p>
     </ConnectionStyled>
   );
 };
 
-export default Connection;
+export default withGlobalState(Connection);

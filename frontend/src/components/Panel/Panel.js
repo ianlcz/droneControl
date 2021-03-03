@@ -24,16 +24,14 @@ const PanelStyled = styled.ul`
 `;
 
 const Panel = () => {
-  const useDroneState = () => {
-    const [droneState, updateDroneState] = useState({});
-    useEffect(() => {
-      socket.on("dronestate", updateDroneState);
-      return () => socket.removeListener("dronestate");
-    }, []);
-    return droneState;
-  };
+  const [droneState, setDroneState] = useState({});
 
-  const droneState = useDroneState([]);
+  useEffect(() => {
+    socket.on("dronestate", setDroneState);
+    setDroneState(setDroneState);
+    return () => socket.removeListener("dronestate");
+  }, []);
+
   return (
     <PanelStyled>
       <Signal />

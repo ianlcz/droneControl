@@ -22,8 +22,10 @@
     "parcel-bundler": "^1.12.4"
   },
   "dependencies": {
+    "re": "^0.1.4",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
+    "react-globally": "^1.1.0",
     "react-icons": "^4.1.0",
     "socket.io-client": "^3.0.4",
     "styled-components": "^5.2.1"

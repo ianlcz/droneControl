@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { withGlobalState } from "react-globally";
 import {
   RiSignalWifi1Fill,
   RiSignalWifi2Fill,
@@ -7,27 +8,44 @@ import {
   RiSignalWifiOffFill,
 } from "react-icons/ri";
 import styled from "styled-components";
+import socket from "../../socket";
 
 const SignalStyled = styled.li`
   font-size: 2em;
 `;
 
-const Signal = (props) => (
-  <SignalStyled title={`Signal Wi-Fi${props.SNR ? ` : ${props.SNR}dB` : ""}`}>
-    {props.SNR >= 41 ? (
-      <RiSignalWifiFill />
-    ) : props.SNR <= 40 && props.SNR >= 25 ? (
-      <RiSignalWifi3Fill />
-    ) : props.SNR <= 24 && props.SNR >= 16 ? (
-      <RiSignalWifi2Fill />
-    ) : props.SNR <= 15 && props.SNR >= 10 ? (
-      <RiSignalWifi1Fill />
-    ) : (
-      <RiSignalWifiOffFill />
-    )}
-  </SignalStyled>
-);
+const Signal = ({ globalState, setGlobalState }) => {
+  const [SNR, setSNR] = useState(0);
 
-Signal.defaultProps = { SNR: 0 };
+  useEffect(() => {
+    socket.on("snr", setSNR);
+    setSNR(Number(setSNR));
+    return () => socket.removeListener("snr");
+  }, []);
 
-export default Signal;
+  useEffect(() => {
+    if (SNR && SNR > 10 && !isNaN(SNR)) {
+      setGlobalState({ isDroneConnected: true });
+    } else {
+      setGlobalState({ isDroneConnected: false });
+    }
+  }, [SNR]);
+
+  return (
+    <SignalStyled title={`Signal Wi-Fi${SNR ? ` : ${SNR}dB` : ""}`}>
+      {SNR >= 41 ? (
+        <RiSignalWifiFill />
+      ) : SNR <= 40 && SNR >= 25 ? (
+        <RiSignalWifi3Fill />
+      ) : SNR <= 24 && SNR >= 16 ? (
+        <RiSignalWifi2Fill />
+      ) : SNR <= 15 && SNR > 10 ? (
+        <RiSignalWifi1Fill />
+      ) : (
+        <RiSignalWifiOffFill />
+      )}
+    </SignalStyled>
+  );
+};
+
+export default withGlobalState(Signal);

@@ -32,7 +32,7 @@ const parseState = (state) =>
 
 drone.on("message", (message) => {
   console.log(`log : ${message}`);
-  io.sockets.emit("status", message.toString());
+  io.sockets.emit("snr", message.toString());
 });
 
 handleError = (err) => {
@@ -53,12 +53,6 @@ io.on("connection", (socket) => {
   setInterval(() => {
     SNR = Number(drone.send("wifi?", 0, 5, PORT.SEND, HOST, handleError));
   }, 5000);
-
-  if (SNR >= 10 && !isNaN(SNR)) {
-    socket.emit("status", true);
-  } else {
-    socket.emit("status", false);
-  }
 });
 
 droneState.on(
@@ -68,20 +62,6 @@ droneState.on(
     100
   )
 );
-
-/* drone.on("listening", (socket) => {
-  socket.on("command", (command) => {
-    let data = drone.send(
-      command,
-      0,
-      command.length,
-      PORT.SEND,
-      HOST,
-      handleError
-    );
-    io.sockets.emit('commandvalue', data.toString())
-  });
-}); */
 
 http.listen(8080, () => {
   console.log("Le serveur Socket.IO est opérationnel");
