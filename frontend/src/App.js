@@ -3,7 +3,7 @@ import {
 } from "styled-components";
 import { createGlobalStyle } from "styled-components";
 import Connection from "./components/Connection";
-import Commands from "./components/Commands";
+import Commands from "./components/button/Commands";
 
 const AppStyled = createGlobalStyle`
   html {
