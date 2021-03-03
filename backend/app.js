@@ -1,6 +1,7 @@
 const dgram = require("dgram");
 const wait = require("waait");
 const app = require("express")();
+
 const http = require("http").Server(app);
 const io = require("socket.io")(http, {
   cors: {
@@ -8,18 +9,26 @@ const io = require("socket.io")(http, {
     methods: ["GET", "POST"],
   },
 });
+
 const throttle = require("lodash/throttle");
 const commandDelays = require("./commandDelays");
 const PORT = {
   SEND: 8889,
   RECEIVE: 8890,
+  VIDEO : 11111
 };
+
 const HOST = "192.168.10.1";
 
 const drone = dgram.createSocket("udp4");
 drone.bind(PORT.SEND);
+
 const droneState = dgram.createSocket("udp4");
 droneState.bind(PORT.RECEIVE);
+
+
+const droneVideo = dgram.createSocket("udp4");
+droneVideo.bind(PORT.VIDEO);
 
 const parseState = (state) =>
   state
@@ -63,6 +72,15 @@ droneState.on(
   )
 );
 
+droneVideo.on("message", (messageVideo) => {
+  //console.log(`logVideo : ${messageVideo}`);
+  io.sockets.emit("messageVideo", messageVideo);
+});
+
+drone.send("streamon", PORT.SEND, HOST, null);
+
 http.listen(8080, () => {
   console.log("Le serveur Socket.IO est opérationnel");
 });
+
+

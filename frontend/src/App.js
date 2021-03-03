@@ -1,6 +1,7 @@
 import React from "react";
 import { createGlobalStyle } from "styled-components";
 import Connection from "./components/Connection";
+import VIDEO from "./components/Video";
 import Panel from "./components/Panel/Panel";
 
 const AppStyled = createGlobalStyle`
@@ -20,6 +21,7 @@ const App = () => (
   <React.Fragment>
     <AppStyled />
     <Connection />
+    <VIDEO/>
     <Panel />
   </React.Fragment>
 );

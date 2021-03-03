@@ -25,7 +25,7 @@ const ConnectionStyled = styled.div`
 
 const Connection = () => {
   const useConnection = () => {
-    const [isConnected, setIsConnected] = useState(false);
+        const [isConnected, setIsConnected] = useState(false);
     useEffect(() => {
       socket.on("status", setIsConnected);
       return () => socket.removeListener("status");
