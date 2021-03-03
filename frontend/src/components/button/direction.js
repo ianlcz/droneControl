@@ -97,7 +97,7 @@ function sendCommand(command) {
 }
 
 const amount = 100;
-const Direction = () => (
+const Commands = () => (
     <CommandGrid>
         <div className="video">
 
@@ -134,4 +134,4 @@ const Direction = () => (
     </CommandGrid>
 );
 
-export default Direction;
+export default Commands;
