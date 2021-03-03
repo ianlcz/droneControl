@@ -43,7 +43,8 @@ const CommandGrid = styled.div`
     margin: 19px 0;
   }
     span {
-      font-size: 40px;
+      font-size: 35px;
+      padding: 10%;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -117,8 +118,8 @@ const Direction = () => (
             </div>
 
             <div className="button-two">
-                <button className="up" onClick={sendCommand('up')}><span className="symbol"><BiArrowFromTop/></span></button>
-                <button className="down" onClick={sendCommand('down')}><span className="symbol"><BiArrowToBottom/></span></button>
+                <button className="up" onClick={sendCommand(`up ${amount}`)}><span className="symbol"><BiArrowFromTop/></span></button>
+                <button className="down" onClick={sendCommand(`down ${amount}`)}><span className="symbol"><BiArrowToBottom/></span></button>
             </div>
             <div className="button-one">
                 <button onClick={sendCommand(`back ${amount}`)}><span className="symbol"><BiDownArrowAlt/></span></button>
