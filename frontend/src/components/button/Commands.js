@@ -2,8 +2,8 @@ import React from "react";
 import styled from 'styled-components';
 import { RiFlightTakeoffLine, RiFlightLandLine } from "react-icons/ri";
 import { IoWarningOutline } from "react-icons/io5";
-import { GiClockwiseRotation, GiAnticlockwiseRotation } from "react-icons/gi";
-import { BiArrowFromTop, BiArrowToBottom, BiLeftArrowAlt, BiRightArrowAlt, BiDownArrowAlt, BiUpArrowAlt } from "react-icons/bi";
+import {BsArrowClockwise, BsArrowCounterclockwise} from "react-icons/bs";
+import {GiRapidshareArrow, GiTronArrow, GiWingedArrow} from "react-icons/gi";
 
 const CommandGrid = styled.div`
     .video{
@@ -18,38 +18,15 @@ const CommandGrid = styled.div`
       height: 17em;
       border-radius: 20em;
     }
-  .button-one{
-    padding:0;
-    display: flex;
-    flex-direction: row;
-    justify-content : center;
-    width: 50%;
-  }
-  .button-two{
-    padding:0;
-    display: flex;
-    justify-content : center;
-    flex-direction: row;
-    justify-content : space-around;
-    width: 120%;
-  }
-  .button-three{
-    padding:0;
-    display: flex;
-    justify-content : center;
-    flex-direction: row;
-    justify-content : space-between;
-    width: 100%;
-    margin: 19px 0;
-  }
     span {
       font-size: 35px;
-      padding: 10%;
+      padding: 15%;
       display: flex;
       justify-content: center;
       align-items: center;
     }
   button{
+    margin-bottom: 5%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -69,14 +46,11 @@ const CommandGrid = styled.div`
     justify-content : center;
     flex-direction: row;
     justify-content : space-around;
-    width: 30%;
+    width: 40%;
   }
     .emergency {
       background-color: darkred;
       color: white;
-    }
-    .up {
-      transform: rotate(180deg);
     }
     .pan{
       margin: 0 auto;
@@ -84,9 +58,25 @@ const CommandGrid = styled.div`
       flex-direction: column;
       align-items: center;
       justify-content : space-evenly;
-      width: 70%;
-      height: 5em;
     }
+  .flipL span {
+    transform: rotate(-44deg);
+  }
+  .flipR span {
+    transform: rotate(135deg);
+  }
+  .flipB span {
+    transform: rotate(50deg);
+  }
+  .flipF span {
+    transform: rotate(227deg);
+  }
+  .goGo span {
+    transform: rotate(224deg);
+  }
+  .curve span {
+    transform: rotate(247deg);
+  }
 `;
 
 function sendCommand(command) {
@@ -102,33 +92,19 @@ const Commands = () => (
         <div className="video">
 
         </div>
-        <div className="container round">
-            <div className="button-one" >
-                <button onClick={sendCommand(`forward ${amount}`)}><span className="symbol"><BiUpArrowAlt/></span></button>
-            </div>
-             <div className="button-two" >
-                <button className="rotate" onClick={sendCommand('ccw 90')}><span className="symbol"><GiClockwiseRotation/></span></button>
-                <button className="rotate" onClick={sendCommand('cw 15')}><span className="symbol"><GiAnticlockwiseRotation/></span></button>
-            </div>
-
-            <div className="button-three" >
-                <button onClick={sendCommand(`left ${amount}`)}><span className="symbol"><BiLeftArrowAlt/></span></button>
-                <button className="emergency" onClick={sendCommand('emergency')}><span className="symbol"><IoWarningOutline/></span></button>
-                <button onClick={sendCommand(`right ${amount}`)}><span className="symbol"><BiRightArrowAlt/></span></button>
-            </div>
-
-            <div className="button-two">
-                <button className="up" onClick={sendCommand(`up ${amount}`)}><span className="symbol"><BiArrowFromTop/></span></button>
-                <button className="down" onClick={sendCommand(`down ${amount}`)}><span className="symbol"><BiArrowToBottom/></span></button>
-            </div>
-            <div className="button-one">
-                <button onClick={sendCommand(`back ${amount}`)}><span className="symbol"><BiDownArrowAlt/></span></button>
-            </div>
-        </div>
         <div className="container pan">
             <div className="button">
                 <button className="takeoff" onClick={sendCommand('takeoff')}><span className="symbol"><RiFlightTakeoffLine/></span></button>
+                <button className="emergency" onClick={sendCommand('emergency')}><span className="symbol"><IoWarningOutline/></span></button>
                 <button className="land" onClick={sendCommand('land')}><span className="symbol"><RiFlightLandLine/></span></button>
+            </div>
+            <div className="button">
+                <button className="flipL" onClick={sendCommand('flip l')}><span className="symbol"><GiRapidshareArrow/></span></button>
+                <button className="flipB" onClick={sendCommand('flip b')}><span className="symbol"><GiRapidshareArrow/></span></button>
+                <button className="goGo" onClick={sendCommand('go 25 25 25 25')}><span className="symbol"><GiWingedArrow/></span></button>
+                <button className="curve" onClick={sendCommand('curve 100 100 100 150 250 350 50')}><span className="symbol"><GiTronArrow/></span></button>
+                <button className="flipF" onClick={sendCommand('flip f')}><span className="symbol"><GiRapidshareArrow/></span></button>
+                <button className="flipR" onClick={sendCommand('flip r')}><span className="symbol"><GiRapidshareArrow/></span></button>
             </div>
         </div>
     </CommandGrid>

@@ -1,9 +1,9 @@
-import {
-  createGlobalStyle
-} from "styled-components";
+import React from "react";
 import { createGlobalStyle } from "styled-components";
 import Connection from "./components/Connection";
 import Commands from "./components/button/Commands";
+import Panel from "./components/Panel/Panel";
+
 
 const AppStyled = createGlobalStyle`
   html {
