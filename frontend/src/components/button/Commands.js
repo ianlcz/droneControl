@@ -111,9 +111,9 @@ const Commands = (props) => (
         </div>
         <div style={{display:"none"}}>key detected: {props.eventKey}</div>
         <KeyboardEventHandler
-          handleKeys={['t', 'b', 'c']}
+          handleKeys={['t', 'l', 'z', 's', 'q', 'd']}
           onKeyEvent={(key, e) => {
-             switch (key) {
+              switch (key) {
                case 't':
                  PressSendCommand('takeoff');
                  break;
@@ -121,10 +121,22 @@ const Commands = (props) => (
                  PressSendCommand('land');
                  break;
                case 'z':
-                 PressSendCommand('forward 10');
+                 PressSendCommand('forward 100');
                  break;
-               case 'z':
-                 PressSendCommand('forward 10');
+               case 's':
+                 PressSendCommand('back 100');
+                 break;
+                case 'q':
+                 PressSendCommand('left 100');
+                 break;
+                case 'd':
+                 PressSendCommand('right 100');
+                 break;
+                case 'a':
+                 PressSendCommand('ccw 900');
+                 break;
+                case 'e':
+                 PressSendCommand('cw 900');
                  break;
                default:
                  break;
@@ -137,12 +149,12 @@ const Commands = (props) => (
                 <button className="land" onClick={sendCommand('land')}><span className="symbol"><RiFlightLandLine/></span></button>
             </div>
             <div className="button">
-                <button className="flipL" onClick={sendCommand('flip l 25')}><span className="symbol"><GiRapidshareArrow/></span></button>
-                <button className="flipB" onClick={sendCommand('flip b 25')}><span className="symbol"><GiRapidshareArrow/></span></button>
+                <button className="flipL" onClick={sendCommand('flip l')}><span className="symbol"><GiRapidshareArrow/></span></button>
+                <button className="flipB" onClick={sendCommand('flip b')}><span className="symbol"><GiRapidshareArrow/></span></button>
                 <button className="goGo" onClick={sendCommand('go 25 25 25 25')}><span className="symbol"><GiWingedArrow/></span></button>
                 <button className="curve" onClick={sendCommand('curve 100 100 100 150 250 350 50')}><span className="symbol"><GiTronArrow/></span></button>
-                <button className="flipF" onClick={sendCommand('flip f 25')}><span className="symbol"><GiRapidshareArrow/></span></button>
-                <button className="flipR" onClick={sendCommand('flip r 25')}><span className="symbol"><GiRapidshareArrow/></span></button>
+                <button className="flipF" onClick={sendCommand('flip f')}><span className="symbol"><GiRapidshareArrow/></span></button>
+                <button className="flipR" onClick={sendCommand('flip r')}><span className="symbol"><GiRapidshareArrow/></span></button>
             </div>
         </div>
     </CommandGrid>
