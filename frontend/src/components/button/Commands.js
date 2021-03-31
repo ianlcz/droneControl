@@ -4,8 +4,13 @@ import { RiFlightTakeoffLine, RiFlightLandLine } from "react-icons/ri";
 import { IoWarningOutline } from "react-icons/io5";
 import {BsArrowClockwise, BsArrowCounterclockwise} from "react-icons/bs";
 import {GiRapidshareArrow, GiTronArrow, GiWingedArrow} from "react-icons/gi";
+import KeyboardEventHandler from 'react-keyboard-event-handler';
+import socket from "../../socket";
 
 const CommandGrid = styled.div`
+    .video{
+      height: 30em;
+    }
     .round{
       margin: 0 auto;
       display:flex;
@@ -78,17 +83,53 @@ const CommandGrid = styled.div`
 
 function sendCommand(command) {
     return function () {
+        try{
         console.log(`Sending the command ${command}`);
         socket.emit('command', command);
+        } catch (error) {
+          console.log(error);
+        }
     };
 }
 
+function PressSendCommand(command) {
+        try{
+        console.log(`Sending the command ${command}`);
+        socket.emit('command', command);
+        } catch (error) {
+          console.log(error);
+        }
+}
+
+
+
 const amount = 100;
-const Commands = () => (
+const Commands = (props) => (
     <CommandGrid>
         <div className="video">
 
         </div>
+        <div style={{display:"none"}}>key detected: {props.eventKey}</div>
+        <KeyboardEventHandler
+          handleKeys={['t', 'b', 'c']}
+          onKeyEvent={(key, e) => {
+             switch (key) {
+               case 't':
+                 PressSendCommand('takeoff');
+                 break;
+               case 'l':
+                 PressSendCommand('land');
+                 break;
+               case 'z':
+                 PressSendCommand('forward 10');
+                 break;
+               case 'z':
+                 PressSendCommand('forward 10');
+                 break;
+               default:
+                 break;
+             }
+          }} />
         <div className="container pan">
             <div className="button">
                 <button className="takeoff" onClick={sendCommand('takeoff')}><span className="symbol"><RiFlightTakeoffLine/></span></button>
@@ -96,12 +137,12 @@ const Commands = () => (
                 <button className="land" onClick={sendCommand('land')}><span className="symbol"><RiFlightLandLine/></span></button>
             </div>
             <div className="button">
-                <button className="flipL" onClick={sendCommand('flip l')}><span className="symbol"><GiRapidshareArrow/></span></button>
-                <button className="flipB" onClick={sendCommand('flip b')}><span className="symbol"><GiRapidshareArrow/></span></button>
+                <button className="flipL" onClick={sendCommand('flip l 25')}><span className="symbol"><GiRapidshareArrow/></span></button>
+                <button className="flipB" onClick={sendCommand('flip b 25')}><span className="symbol"><GiRapidshareArrow/></span></button>
                 <button className="goGo" onClick={sendCommand('go 25 25 25 25')}><span className="symbol"><GiWingedArrow/></span></button>
                 <button className="curve" onClick={sendCommand('curve 100 100 100 150 250 350 50')}><span className="symbol"><GiTronArrow/></span></button>
-                <button className="flipF" onClick={sendCommand('flip f')}><span className="symbol"><GiRapidshareArrow/></span></button>
-                <button className="flipR" onClick={sendCommand('flip r')}><span className="symbol"><GiRapidshareArrow/></span></button>
+                <button className="flipF" onClick={sendCommand('flip f 25')}><span className="symbol"><GiRapidshareArrow/></span></button>
+                <button className="flipR" onClick={sendCommand('flip r 25')}><span className="symbol"><GiRapidshareArrow/></span></button>
             </div>
         </div>
     </CommandGrid>

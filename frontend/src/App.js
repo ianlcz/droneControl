@@ -5,6 +5,7 @@ import Commands from "./components/button/Commands";
 import Panel from "./components/Panel/Panel";
 
 
+
 const AppStyled = createGlobalStyle`
   html {
     height: 100%;
@@ -18,13 +19,17 @@ const AppStyled = createGlobalStyle`
   }
 `;
 
-const App = () => (
-  <React.Fragment>
-    <AppStyled />
-    <Connection />
-    <Commands />
-    <Panel />
-  </React.Fragment>
-);
+const App = (props) => {
+
+
+  return (
+    <div>
+      <AppStyled />
+      <Connection />
+      <Commands />
+      <Panel />
+    </div>
+  );
+};
 
 export default App;
