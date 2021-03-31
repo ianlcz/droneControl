@@ -14,6 +14,7 @@ This project consists in the development of a React web application which allows
 
 - [How to install and use it ?](#how-to-install-and-use-it)
 - [Documentations](#documentations)
+- [Keyboard controls](#keyboard-controls)
 - [**License**](#license)
 
 ## How to install and use it ?
@@ -32,6 +33,20 @@ First of all clone this repository in your choice directory.
 ## Documentations
 
 [Documentations for _Ryze DJI Tello_ are available here](./docs)
+
+## Keyboard controls
+
+| Actions         | Keyboard keys |
+| --------------- | :-----------: |
+| Take-off        |       t       |
+| Land            |       l       |
+| Forward         |       z       |
+| Back            |       s       |
+| Go to left      |       q       |
+| Go to right     |       d       |
+| **Emergency**   |     **u**     |
+| Rotate to left  |       a       |
+| Rotate to right |       e       |
 
 ## License
 
