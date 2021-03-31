@@ -6,9 +6,6 @@ import {BsArrowClockwise, BsArrowCounterclockwise} from "react-icons/bs";
 import {GiRapidshareArrow, GiTronArrow, GiWingedArrow} from "react-icons/gi";
 
 const CommandGrid = styled.div`
-    .video{
-      height: 30em;
-    }
     .round{
       margin: 0 auto;
       display:flex;
