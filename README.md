@@ -47,6 +47,10 @@ First of all clone this repository in your choice directory.
 | **Emergency**   |     **u**     |
 | Rotate to left  |       a       |
 | Rotate to right |       e       |
+| Flip to forward |       y       |
+| Flip to back    |       h       |
+| Flip to left    |       g       |
+| Flip to right   |       j       |
 
 ## License
 
