@@ -111,7 +111,7 @@ const Commands = (props) => (
         </div>
         <div style={{display:"none"}}>key detected: {props.eventKey}</div>
         <KeyboardEventHandler
-          handleKeys={['t', 'l', 'z', 's', 'q', 'd']}
+          handleKeys={['t', 'l', 'z', 's', 'q', 'd','a','e','g','j','y','h']}
           onKeyEvent={(key, e) => {
               switch (key) {
                case 't':
@@ -133,10 +133,22 @@ const Commands = (props) => (
                  PressSendCommand('right 100');
                  break;
                 case 'a':
-                 PressSendCommand('ccw 900');
+                 PressSendCommand('ccw 90');
                  break;
                 case 'e':
-                 PressSendCommand('cw 900');
+                 PressSendCommand('cw 90');
+                 break;
+                case 'j':
+                 PressSendCommand('flip r');
+                 break;
+                case 'g':
+                 PressSendCommand('flip l');
+                 break;
+                case 'y':
+                 PressSendCommand('flip f');
+                 break;
+                case 'h':
+                 PressSendCommand('flip b');
                  break;
                default:
                  break;
