@@ -33,6 +33,11 @@ const parseState = (state) =>
 drone.on("message", (message) => {
   console.log(`log : ${message}`);
   io.sockets.emit("snr", message.toString());
+  if(message.toString() === 'error')
+  {
+    const popUp = "La batterie est insuffisante !";
+    io.sockets.emit("pop", popUp);
+  }
 });
 
 handleError = (err) => {
