@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { createGlobalStyle } from "styled-components";
 import Connection from "./components/Connection";
 import Commands from "./components/button/Commands";
 import Panel from "./components/Panel/Panel";
 import Notification from "./components/Notification";
+import socket from "./socket";
 
 const AppStyled = createGlobalStyle`
   html {
@@ -19,13 +20,24 @@ const AppStyled = createGlobalStyle`
 `;
 
 const App = (props) => {
-  const [error, setError] = useState(true);
+  const [messageError, setMessageError] = useState("");
+
+  useEffect(() => {
+    socket.on("pop", setMessageError);
+    setMessageError(setMessageError);
+    setTimeout(() => {
+      setMessageError("");
+    }, 3000);
+    return () => socket.removeListener("pop");
+  }, []);
+
+  console.log(("Error : ", messageError));
 
   return (
     <div>
       <AppStyled />
       <Connection />
-      {error ? <Notification /> : null}
+      {messageError !== "" ? <Notification message={messageError} /> : null}
       <Commands />
       <Panel />
     </div>
