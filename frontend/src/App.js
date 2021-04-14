@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { createGlobalStyle } from "styled-components";
 import Connection from "./components/Connection";
 import Commands from "./components/button/Commands";
 import Panel from "./components/Panel/Panel";
-
-
+import Notification from "./components/Notification";
 
 const AppStyled = createGlobalStyle`
   html {
@@ -20,12 +19,13 @@ const AppStyled = createGlobalStyle`
 `;
 
 const App = (props) => {
-
+  const [error, setError] = useState(true);
 
   return (
     <div>
       <AppStyled />
       <Connection />
+      {error ? <Notification /> : null}
       <Commands />
       <Panel />
     </div>
