@@ -11,10 +11,10 @@ const BatteryStyled = styled.li`
   width: 3.3em;
   color: ${(props) =>
     props.level <= 20 && props.level >= 10
-      ? "#0b6832"
+      ? "#686832"
       : props.level < 10 && props.level !== null
       ? "#680b32"
-      : "#0b3268"};
+      : "#0b6832"};
   svg {
     width: 100%;
     font-size: 2em;
